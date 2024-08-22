@@ -7,10 +7,43 @@ import './Home.scss'
 
 
 const Home = () => {
-    const [listing, setListing] = useState('')
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
-    const [listingInfo, setListingInfo] = useState({});
+    const [form, setForm] = useState({
+        listing: '',
+        name: '',
+        email: ''
+    })
+    const [error, setError] = useState({
+        listing: false,
+        name: false,
+        email: false
+    })
+    const [listingInfo, setListingInfo] = useState({})
+
+    const handleFormChange = (event, field) => {
+        setForm({...form, 
+            [field]: event.target.value})
+    }
+
+    const isEmailValid = (email) => {
+        const regex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+        return regex.test(email)
+    }
+
+    const handleBlur = (field) => {
+        if (form[field].length < 2) {
+            setError({...error, 
+                [field]: true
+            })
+        } else {
+            setError({...error, 
+                [field]: false
+            })
+        } if (field === 'email') {
+            setError({...error,
+                [field]: (!isEmailValid(form[field]))
+            })
+        }
+    }
 
     const getListingInfo = async (listing) => {
         const listingID = {
@@ -213,31 +246,56 @@ const Home = () => {
 
     return (
         <main className="main">
-            <form className="link__form">
-                <label htmlFor="name">Name</label>
+            <form className="form">
+                <div className="form__field">
+                    <label htmlFor="name">Name</label>
+                    <input 
+                            type="text"
+                            name='name'
+                            value={form.name}
+                            className="link__input"
+                            onChange={(event) => {handleFormChange(event,'name')}}
+                            onBlur={() => {handleBlur('name')}}
+                            placeholder="Enter your name"
+                            required
+                    />
+                    <div className={`form__error ${error.name ? 'form__error--true' : ''}`}>
+                        <p className='form__error-text'>This field is required</p>
+                    </div>
+                </div>
+                <div className="form__field">
+                    <label htmlFor="email">Email</label>
+                    <input 
+                        type="email"
+                        name='email'
+                        value={form.email}
+                        className="link__input"
+                        onChange={(event) => {handleFormChange(event,'email')}}
+                        onBlur={() => {handleBlur('email')}}
+                        placeholder="Enter your email"
+                        required
+                    />
+                     <div className={`form__error ${error.email ? 'form__error--true' : ''}`}>
+                        <p className='form__error-text'>Please enter a valid email</p>
+                    </div>
+                </div>
+                <div className="form__field">
+                    <label htmlFor="link" className="link__input-label">Garage Listing</label>
                     <input 
                         type="text"
-                        value={name}
+                        value={form.listing}
+                        name='listing'
                         className="link__input"
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(event) => {handleFormChange(event,'listing')}}
+                        onBlur={() => {handleBlur('listing')}}
+                        placeholder="Enter listing link"
+                        required
                     />
-                <label htmlFor="email">Email</label>
-                <input 
-                    type="text"
-                    value={email}
-                    className="link__input"
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your name"
-                />
-                <label htmlFor="link" className="link__input-label">Garage Listing</label>
-                <input 
-                    type="text"
-                    value={listing}
-                    className="link__input"
-                    onChange={(e) => setListing(e.target.value)}
-                    placeholder="Enter your name"
-                />
-                <div>
+                    <div className={`form__error ${error.listing ? 'form__error--true' : ''}`}>
+                        <p className='form__error-text'>This field is required</p>
+                    </div>
+                </div>
+                <div className="link__input-submit-container">
                     <button type='button' onClick={handleSavePDF} className="link__input-submit">Download Invoice</button>
                     <button type='button' onClick={handleEmailPDF} className="link__input-submit">Email Invoice</button>
                 </div>
