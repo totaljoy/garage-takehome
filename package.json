@@ -13,6 +13,7 @@
     "axios": "^1.7.4",
     "dayjs": "^1.11.13",
     "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.26.1"
@@ -26,5 +27,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "vite": "^5.2.0"
-  }
+  },
+  "editor.maxTokenizationLineLength": 5000
 }
