@@ -45,85 +45,22 @@ const Home = () => {
         }
     }
 
-    const getListingInfo = async (listing) => {
+    const getListingInfo = async () => {
         const listingID = {
-            id: listing.split('').splice((listing.length - 36), 36).join('')
+            id: form.listing.split('').splice((form.listing.length - 36), 36).join('')
         }
 
         try {
             const result = await axios.post('https://garage-backend.onrender.com/getListing', listingID)
             setListingInfo(result.data.result.listing)
-            console.log(listingInfo)
+            return result.data.result.listing
         } catch(err) {
             console.log(err)
         }
     }
-    
-    const data = {
-        result: {
-            listing: {
-                id: "ca7e92d4-6d97-45a5-bc8f-d4bbc659c963",
-                createdAt: "2024-07-08T20:13:47.975Z",
-                updatedAt: "2024-07-11T15:50:54.732Z",
-                itemBrand: "E-One",
-                itemCategory: 0,
-                listingTitle: "2003 E-One Typhoon Engine",
-                listingDescription: "2003 E-One Typhoon Rescue Pumper 1000 water 1500GPM pump. Large hose bed seating for 6 (5 SCBA). Available immediately, lots of life left in it!",
-                sellingPrice: 27000,
-                isShippable: false,
-                imageUrls: [
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720478066758.jpg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720478068041.jpg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720478069831.jpg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720478071132.jpg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720478072445.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720478075581.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720478076912.jpg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632862725.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632864209.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632865509.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632866534.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632867668.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632868777.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632870045.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632871141.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632872198.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632873907.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632875047.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632876655.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632878311.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632879972.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632881099.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632882374.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632883449.jpeg",
-                    "https://tckhzquklzptybofowyk.supabase.co/storage/v1/object/public/items/84addf60-06bb-464b-9b76-43aacbd2ce40/1720632884881.jpeg"
-                ],
-                listingStatus: 0,
-                tags: [],
-                categories: [
-                    1
-                ],
-                itemWears: [],
-                scrapedLink: null,
-                itemAge: 2003,
-                itemCondition: "3",
-                itemLength: null,
-                itemWidth: null,
-                itemHeight: null,
-                itemWeight: 50000,
-                addressPrimary: "4105 Rt 22",
-                addressSecondary: "",
-                addressCity: "Plattsburgh",
-                addressState: "NY",
-                addressZip: "12901",
-                userId: "84addf60-06bb-464b-9b76-43aacbd2ce40"
-            }
-        },
-        error: ""
-    };
 
     
-    const downloadPDF = async () => {
+    const downloadPDF = async (listing) => {
 
         const doc = new jsPDF()
         doc.setFontSize(16)
@@ -144,13 +81,13 @@ const Home = () => {
         doc.setFont('helvetica', 'bold')
         doc.text('BILLED TO:', 20, 35)
         doc.setFont('helvetica', 'normal')
-        doc.text(`${name}`, 20, 44)
-        doc.text(`${email}`, 20, 52)
+        doc.text(`${form.name}`, 20, 44)
+        doc.text(`${form.email}`, 20, 52)
         
 //      Listing ID and Date
         doc.text(`Reference No.`, doc.internal.pageSize.width - 47, 35)
         doc.setFontSize(10)
-        doc.text(`${data.result.listing.id}`, doc.internal.pageSize.width - 85, 42)
+        doc.text(`${listing.id}`, doc.internal.pageSize.width - 85, 42)
         doc.setFontSize(12)
         doc.text(`${dayjs().format('MMMM D, YYYY')}`, doc.internal.pageSize.width - 52, 52);
         doc.setLineWidth(0.2)
@@ -159,7 +96,7 @@ const Home = () => {
 //      Invoice Table
         const tableHeaders = [['Item', 'Year', 'Location', 'Price']]
         const tableData = [
-            [[`${data.result.listing.listingTitle}\n\n${data.result.listing.listingDescription}`], `${data.result.listing.itemAge}`, `${data.result.listing.addressState}`, `$${data.result.listing.sellingPrice}`]
+            [[`${listing.listingTitle}\n\n${listing.listingDescription}`], `${listing.itemAge}`, `${listing.addressState}`, `$${listing.sellingPrice}`]
         ]
 
         doc.autoTable({
@@ -177,7 +114,7 @@ const Home = () => {
         doc.save('invoice.pdf');
     }
 
-    const emailPDF = async () => {
+    const emailPDF = async (listing) => {
 
         const doc = new jsPDF()
         doc.setFontSize(16)
@@ -198,13 +135,13 @@ const Home = () => {
         doc.setFont('helvetica', 'bold')
         doc.text('BILLED TO:', 20, 35)
         doc.setFont('helvetica', 'normal')
-        doc.text(`${name}`, 20, 44)
-        doc.text(`${email}`, 20, 52)
+        doc.text(`${form.name}`, 20, 44)
+        doc.text(`${form.email}`, 20, 52)
         
 //      Listing ID and Date
         doc.text(`Reference No.`, doc.internal.pageSize.width - 47, 35)
         doc.setFontSize(10)
-        doc.text(`${data.result.listing.id}`, doc.internal.pageSize.width - 85, 42)
+        doc.text(`${listing.id}`, doc.internal.pageSize.width - 85, 42)
         doc.setFontSize(12)
         doc.text(`${dayjs().format('MMMM D, YYYY')}`, doc.internal.pageSize.width - 52, 52);
         doc.setLineWidth(0.2)
@@ -213,7 +150,7 @@ const Home = () => {
 //      Invoice Table
         const tableHeaders = [['Item', 'Year', 'Location', 'Price']]
         const tableData = [
-            [[`${data.result.listing.listingTitle}\n\n${data.result.listing.listingDescription}`], `${data.result.listing.itemAge}`, `${data.result.listing.addressState}`, `$${data.result.listing.sellingPrice}`]
+            [[`${listing.listingTitle}\n\n${listing.listingDescription}`], `${listing.itemAge}`, `${listing.addressState}`, `$${listing.sellingPrice}`]
         ]
 
         doc.autoTable({
@@ -229,19 +166,29 @@ const Home = () => {
     }});
 
         const pdfDataUri = doc.output('datauristring');
-        const mailtoLink = `mailto:${email}?subject=Invoice&body=Please find the invoice attached.&attachment=${encodeURIComponent(pdfDataUri)}`;
+        const mailtoLink = `mailto:${form.email}?subject=Invoice&body=Please find the invoice attached.&attachment=${encodeURIComponent(pdfDataUri)}`;
         window.location.href = mailtoLink;
 
     }
 
-    const handleSavePDF = (event) => {
+    const handleSavePDF = async (event) => {
         event.preventDefault();
-        downloadPDF();
+        const listing = await getListingInfo();
+        if (listing) {
+            downloadPDF(listing);
+        } else {
+            console.error("Failed to fetch listing information");
+        }
     }
 
-    const handleEmailPDF = (event) => {
+    const handleEmailPDF = async (event) => {
         event.preventDefault();
-        emailPDF();
+        const listing = await getListingInfo();
+        if (listing) {
+            emailPDF(listing);
+        } else {
+            console.error("Failed to fetch listing information");
+        }
     }
 
     return (
